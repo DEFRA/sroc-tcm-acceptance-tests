@@ -1,0 +1,45 @@
+# Intellij project files
+.idea/
+*.iml
+*.iws
+
+# Ignore eclipse project files
+.classpath
+.settings
+.project
+
+# Netbeans IDE files
+nbactions.xml
+
+# Mac
+.DS_Store
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Ignore Output folder
+target
+
+# Maven
+log/
+target/
+
+# Ignore dependency reduced POM
+dependency-reduced-pom.xml
+
+*.class
+*.log
+
+# Browser drivers
+#
+# Selenium depends on users downloading the appropriate driver for the browser
+# they have installed, both type and version. So this is not something we can
+# provide and they should not be comitted to source control accidently.
+# But we want to keep the folder as our documentation states this is where to
+# the drivers downloaded. So with this config we are saying ignore everything in
+# the drivers folder apart from .keep. The .keep file ensures the drivers folder
+# is created when the project is cloned.
+drivers/**
+!drivers/.keep

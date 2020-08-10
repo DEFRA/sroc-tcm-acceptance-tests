@@ -1,0 +1,3 @@
+browser: chrome
+rootUrl: "https://example.com"
+test: main
