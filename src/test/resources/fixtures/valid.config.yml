@@ -1,3 +1,4 @@
 browser: chrome
+headless: true
 rootUrl: "https://example.com"
 test: main

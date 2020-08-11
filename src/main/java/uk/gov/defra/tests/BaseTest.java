@@ -11,7 +11,7 @@ public abstract class BaseTest implements TestInterface {
     protected WebDriver driver;
 
     public BaseTest(Configuration config) {
-        this.testDriver = new AcceptanceTestDriver(config.getBrowser());
+        this.testDriver = new AcceptanceTestDriver(config.getBrowser(), config.getHeadless());
         this.rootUrl = config.getRootUrl();
         this.driver = testDriver.getDriver();
     }
