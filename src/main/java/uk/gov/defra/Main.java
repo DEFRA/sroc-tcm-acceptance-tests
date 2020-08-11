@@ -1,7 +1,7 @@
 package uk.gov.defra;
 
 import uk.gov.defra.tests.ExampleTest;
-import uk.gov.defra.tests.TestInterface;
+import uk.gov.defra.tests.MainTest;
 
 public class Main {
 
@@ -14,10 +14,11 @@ public class Main {
         Configuration config = processConfiguration(args[0]);
         if (config == null) System.exit(1);
 
-        TestInterface test;
+
         if (config.getTest().equals("example")) {
-            test = new ExampleTest(config);
-            test.run();
+            runExampleTest(config);
+        } else {
+            runMainTest(config);
         }
 
         msg("All done. Have a nice day!");
@@ -34,6 +35,16 @@ public class Main {
         }
 
         return config;
+    }
+
+    private static void runExampleTest(Configuration config) {
+        ExampleTest test = new ExampleTest(config);
+        test.run();
+    }
+
+    private static void runMainTest(Configuration config) {
+        MainTest test = new MainTest(config);
+        test.run();
     }
 
     private static void msg(String message) {
