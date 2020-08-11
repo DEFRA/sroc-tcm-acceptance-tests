@@ -2,7 +2,9 @@ package uk.gov.defra;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -13,19 +15,17 @@ public class AcceptanceTestDriver {
     private WebDriver driver;
 
     private DriverName driverName;
+    private Boolean headless;
 
-    public enum DriverName {
+    private enum DriverName {
         chrome,
         gecko
     }
 
-    public AcceptanceTestDriver(String selectedBrowser) {
+    public AcceptanceTestDriver(String selectedBrowser, Boolean headless) {
+        this.headless = headless;
         determineDriverName(selectedBrowser);
         setDriverSystemProperty();
-    }
-
-    public DriverName getDriverName() {
-        return driverName;
     }
 
     public WebDriver getDriver() {
@@ -51,9 +51,19 @@ public class AcceptanceTestDriver {
     private String getDriverPath() {
         Path currentRelativePath = Paths.get("");
         Path currentDir = currentRelativePath.toAbsolutePath();
-        String filename = "drivers" + File.separatorChar + driverName.name() + "driver" + driverExtension();
+        String filename = "drivers" + File.separatorChar + driverName.name() + "driver" + getDriverExtension();
 
         return currentDir.resolve(filename).toString();
+    }
+
+    private String getDriverExtension() {
+        String extension = "";
+
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            extension = ".exe";
+        }
+
+        return extension;
     }
 
     private void setDriverSystemProperty() {
@@ -62,19 +72,23 @@ public class AcceptanceTestDriver {
 
     private void initialiseDriver() {
         if (driverName == DriverName.chrome) {
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(getChromeOptions());
         } else {
-            driver = new FirefoxDriver();
+            driver = new FirefoxDriver(getFirefoxOptions());
         }
     }
 
-    private String driverExtension() {
-        String extension = "";
+    private ChromeOptions getChromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+        options.setHeadless(headless);
 
-        if (System.getProperty("os.name").startsWith("Windows")) {
-            extension = ".exe";
-        }
+        return options;
+    }
 
-        return extension;
+    private FirefoxOptions getFirefoxOptions() {
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(headless);
+
+        return options;
     }
 }

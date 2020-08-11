@@ -9,6 +9,7 @@ import java.io.IOException;
 public class Configuration {
 
     private String browser;
+    private Boolean headless;
     private String rootUrl;
     private String test;
 
@@ -24,6 +25,14 @@ public class Configuration {
 
     public void setBrowser(String browser) {
         this.browser = browser;
+    }
+
+    public Boolean getHeadless() {
+        return headless;
+    }
+
+    public void setHeadless(Boolean headless) {
+        this.headless = headless;
     }
 
     public String getRootUrl() {

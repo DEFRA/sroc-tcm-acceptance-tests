@@ -1,6 +1,7 @@
 addons:
   sonarcloud:
     organization: "defra"
+  chrome: stable
 
 language: java
 
@@ -13,7 +14,25 @@ jdk:
 git:
   depth: false
 
+before_script:
+  # To support running selenium on Travis we have told Travis to install Chrome
+  # (see addons). You also need the chromedriver which Travis doesn't install.
+  # To make this 'future-proof' we use a couple of scripts to determine the
+  # current version of Chrome. We can then use this to work out the matching
+  # version of Chromedriver. Once we have that we download and unzip
+  # Chromedriver to our drivers/ folder ready for use in the script section.
+  #
+  # Thanks to https://travis-ci.community/u/sheean for his response which solved
+  # this problem for us
+  # https://travis-ci.community/t/how-to-setup-chromedriver-74-with-chrome-74-for-travis/2678/10
+  - CHROME_INSTALLED_VERSION=`google-chrome-stable --version | sed -E 's/(^Google Chrome |\.[0-9]+ )//g'`
+  - CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_INSTALLED_VERSION"`
+  - curl "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
+  - unzip chromedriver_linux64.zip -d /home/travis/build/DEFRA/sroc-tcm-acceptance-tests/drivers
+
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=DEFRA_sroc-tcm-acceptance-tests
+  - ./mvnw clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=DEFRA_sroc-tcm-acceptance-tests
+  # confirm project is working by running our example test
+  - TCM_TEST_PASSWORD=password java -jar target/sroc-tcm-acceptance-tests.jar example.config.yml
 

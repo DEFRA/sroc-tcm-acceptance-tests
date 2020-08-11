@@ -85,6 +85,7 @@ class ConfigurationTest {
         Configuration subject = Configuration.readConfigurationFile(absolutePath);
 
         assertEquals("chrome", subject.getBrowser());
+        assertEquals(true, subject.getHeadless());
         assertEquals("https://example.com", subject.getRootUrl());
         assertEquals("main", subject.getTest());
     }

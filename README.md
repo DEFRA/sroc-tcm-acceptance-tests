@@ -64,7 +64,7 @@ From the root of the project run the following to confirm all is working
 TCM_TEST_PASSWORD=password java -jar target/sroc-tcm-acceptance-tests.jar example.config.yml
 ```
 
-If it is you should see Chrome open, and a quick search on Google take place. Blink, and you might miss it!
+If it is the project will perform a quick search on Google. The browser won't appear for this as the test is set to run headless.
 
 ## Configuration
 
@@ -72,14 +72,16 @@ To run the main test create a new config file. For example, create a file called
 
 ```yaml
 browser: chrome
+headless: false
 rootUrl: "https://url-of-tcm-dev-environment.gov.uk/"
 test: main
 ```
 
-You can create as many configuration files as you like mixing `browser` and `rootUrl`.
+You can create as many configuration files as you like mixing `browser`, `headless` and `rootUrl`.
 
 ```yaml
 browser: firefox
+headless: true
 rootUrl: "https://url-of-tcm-test-environment.gov.uk/"
 test: main
 ```
@@ -87,6 +89,7 @@ test: main
 Key things are
 
 - `browser:` only use the values `chrome` or `firefox`
+- `headless:` only use the values `true` or `false`. 
 - `rootUrl:` should be the base url for an environment, not something like `https://url-of-tcm-dev-environment.gov.uk/auth/sign_in`
 - `test:` should always be `main`. It's configurable only to support the [Confirm setup](#confirm-setup) step of the installation.
 
