@@ -1,5 +1,11 @@
 # SROC TCM Acceptance tests
 
+[![Build Status](https://travis-ci.com/DEFRA/sroc-tcm-acceptance-tests.svg?branch=main)](https://travis-ci.com/DEFRA/sroc-tcm-acceptance-tests)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_sroc-tcm-acceptance-tests&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DEFRA_sroc-tcm-acceptance-tests)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_sroc-tcm-acceptance-tests&metric=coverage)](https://sonarcloud.io/dashboard?id=DEFRA_sroc-tcm-acceptance-tests)
+[![Known Vulnerabilities](https://snyk.io/test/github/DEFRA/sroc-tcm-acceptance-tests/badge.svg)](https://snyk.io/test/github/DEFRA/sroc-tcm-acceptance-tests)
+[![Licence](https://img.shields.io/badge/Licence-OGLv3-blue.svg)](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3)
+
 > Temporary project. Do not use as a basis for doing selenium tests with Java!
 
 The Strategic Review of Charging (SROC) Tactical Charging Module (TCM) is an internal tool built by Defra to support the calculation of charges related to various permitting regimes.
