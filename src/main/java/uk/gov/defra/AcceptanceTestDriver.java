@@ -35,7 +35,7 @@ public class AcceptanceTestDriver {
         return driver;
     }
 
-    private void determineDriverName(String selectedBrowser) throws IllegalArgumentException {
+    private void determineDriverName(String selectedBrowser) {
         switch (selectedBrowser.toLowerCase()) {
             case "chrome":
                 this.driverName = DriverName.chrome;
@@ -61,13 +61,10 @@ public class AcceptanceTestDriver {
     }
 
     private void initialiseDriver() {
-        switch (driverName) {
-            case chrome:
-                driver = new ChromeDriver();
-                break;
-            case gecko:
-                driver = new FirefoxDriver();
-                break;
+        if (driverName == DriverName.chrome) {
+            driver = new ChromeDriver();
+        } else {
+            driver = new FirefoxDriver();
         }
     }
 
