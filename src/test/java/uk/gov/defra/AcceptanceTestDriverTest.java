@@ -60,7 +60,7 @@ class AcceptanceTestDriverTest {
      *
      * @throws Exception
      */
-    @Disabled
+    @Disabled("Test will only pass when it is the last test for this class. Awaiting a fix")
     @Test
     void Adds_exe_to_driver_path_in_webdriver_system_property_when_os_is_windows() throws Exception {
         restoreSystemProperties(() -> {
