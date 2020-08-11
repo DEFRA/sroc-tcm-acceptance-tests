@@ -9,7 +9,6 @@ This project contains the current acceptance tests for the TCM. It is built arou
 ## Prerequisites
 
 - [Java 8](https://openjdk.java.net/install/)
-- [Maven](https://maven.apache.org/) (though IDE's like Intellij will handle this for you)
 - [Browser binaries](#installing-webdriver-binaries) (see below)
 
 The project supports running the 'test' using [Firefox](https://www.mozilla.org/en-GB/firefox/) or [Chrome](https://www.google.com/intl/en_uk/chrome/) so you'll need at least one of these browsers installed.
@@ -25,11 +24,13 @@ git clone https://github.com/DEFRA/sroc-tcm-acceptance-tests.git
 cd sroc-tcm-acceptance-tests
 ```
 
-Then build the project
+Then build the project using [Maven](https://maven.apache.org/). To simplify things the project comes with [maven-wrapper](https://github.com/takari/maven-wrapper). This will automatically install Maven for you if you don't already have it. 
 
 ```bash
-mvn clean package
+./mvnw clean install
 ```
+
+> Windows users can use `mvnw.cmd clean install`
 
 ### Installing WebDriver binaries
 
