@@ -13,7 +13,7 @@ class AcceptanceTestDriverTest {
         restoreSystemProperties(() -> {
             new AcceptanceTestDriver("chrome", true);
             assertTrue(
-                    System.getProperty("webdriver.chrome.driver").endsWith("chromedriver")
+                    System.getProperty("webdriver.chrome.driver").contains("chromedriver")
             );
         });
     }
@@ -23,7 +23,7 @@ class AcceptanceTestDriverTest {
         restoreSystemProperties(() -> {
             new AcceptanceTestDriver("firefox", true);
             assertTrue(
-                    System.getProperty("webdriver.gecko.driver").endsWith("geckodriver")
+                    System.getProperty("webdriver.gecko.driver").contains("geckodriver")
             );
         });
     }
@@ -33,7 +33,7 @@ class AcceptanceTestDriverTest {
         restoreSystemProperties(() -> {
             new AcceptanceTestDriver("CHROME", true);
             assertTrue(
-                    System.getProperty("webdriver.chrome.driver").endsWith("chromedriver")
+                    System.getProperty("webdriver.chrome.driver").contains("chromedriver")
             );
         });
     }
