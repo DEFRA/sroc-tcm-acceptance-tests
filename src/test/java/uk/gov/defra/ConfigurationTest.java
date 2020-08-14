@@ -77,7 +77,7 @@ class ConfigurationTest {
 
         File file = new File(
                 Objects.requireNonNull(
-                        classLoader.getResource("fixtures" + File.separatorChar + "valid.config.yml")
+                        classLoader.getResource("valid.config.yml")
                 ).getFile()
         );
         String absolutePath = file.getAbsolutePath();
