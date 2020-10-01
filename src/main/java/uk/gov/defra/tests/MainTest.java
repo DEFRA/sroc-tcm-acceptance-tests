@@ -50,7 +50,7 @@ public class MainTest extends BaseTest {
 
             wait = new WebDriverWait(driver, 15);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user_email")));
-            driver.findElement(By.id("user_email")).sendKeys("paul.murdock@environment-agency.gov.uk");
+            driver.findElement(By.id("user_email")).sendKeys("tacticalcm+1@gmail.com");
 
             // Type in password
             driver.findElement(By.id("user_password")).sendKeys(password);
@@ -507,15 +507,22 @@ public class MainTest extends BaseTest {
 
                                 if (driver.findElement(By.xpath("//input[@value='Reinstate for Billing']"))
                                         .isDisplayed()) {
-                                    System.out.println("[CHECK - Water Quality] 'Reinstate for Billing' buttton found");
+                                    System.out.println("[CHECK - Water Quality] 'Reinstate for Billing' button found");
                                 } else {
                                     System.out.println(
-                                            "[ERROR!! - Water Quality] 'Reinstate for Billing' buttton NOT found!");
+                                            "[ERROR!! - Water Quality] 'Reinstate for Billing' button NOT found!");
                                 }
 
                                 // Click the <Back> link to return to TTBB
+                               /* WebElement backLink = driver.findElement(By.xpath("//a[@class='back-link']"));
+                                System.out.println(backLink.getText());
+                                System.out.println(backLink.isEnabled());
+                                System.out.println(backLink.isDisplayed());
+*/
                                 driver.findElement(By.xpath("//a[@class='back-link']")).click();
-                                Thread.sleep(500);
+                                driver.findElement(By.xpath("//a[@class='back-link']")).click();
+                                //
+                                Thread.sleep(1000);
                                 baseTable = driver.findElement(By.className("table-responsive"));
                                 driver.findElement(By.xpath("//table/thead/tr/th[8]/a")).click();
                                 System.out.println("[CHECK - Water Quality] Sort by 'Category' (asc)");
@@ -1398,6 +1405,7 @@ public class MainTest extends BaseTest {
 
                                 // Click the <Back> link to return to TTBB
                                 driver.findElement(By.xpath("//a[@class='back-link']")).click();
+                                driver.findElement(By.xpath("//a[@class='back-link']")).click();
                                 Thread.sleep(500);
                                 baseTablePAS = driver.findElement(By.className("table-responsive"));
                                 driver.findElement(By.xpath("//table/thead/tr/th[7]/a")).click();
@@ -2244,12 +2252,13 @@ public class MainTest extends BaseTest {
 
                                 if (driver.findElement(By.xpath("//input[@value='Reinstate for Billing']"))
                                         .isDisplayed()) {
-                                    System.out.println("[CHECK - Waste] 'Reinstate for Billing' buttton found");
+                                    System.out.println("[CHECK - Waste] 'Reinstate for Billing' button found");
                                 } else {
-                                    System.out.println("[ERROR!! - Waste] 'Reinstate for Billing' buttton NOT found!");
+                                    System.out.println("[ERROR!! - Waste] 'Reinstate for Billing' button NOT found!");
                                 }
 
                                 // Click the <Back> link to return to TTBB
+                                driver.findElement(By.xpath("//a[@class='back-link']")).click();
                                 driver.findElement(By.xpath("//a[@class='back-link']")).click();
                                 Thread.sleep(500);
                                 baseTableWABS = driver.findElement(By.className("table-responsive"));

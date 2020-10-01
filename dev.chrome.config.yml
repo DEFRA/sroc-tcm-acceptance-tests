@@ -1,0 +1,4 @@
+browser: chrome
+headless: false
+rootUrl: "https://tcm-dev.aws.defra.cloud/"
+test: main
