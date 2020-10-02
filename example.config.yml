@@ -1,4 +1,4 @@
 browser: chrome
 headless: true
-rootUrl: "https://www.google.co.uk/"
+rootUrl: "http://example.com/"
 test: example
