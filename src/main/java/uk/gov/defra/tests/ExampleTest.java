@@ -17,13 +17,12 @@ public class ExampleTest extends BaseTest {
             driver.navigate().to(rootUrl);
 
             WebDriverWait wait = new WebDriverWait(driver, 10);
-            WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
-            searchField.sendKeys("defra");
-            searchField.submit();
+            WebElement moreInfoLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a")));
 
-            WebElement firstResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"r\"]/a/h3")));
+            moreInfoLink.click();
+            WebElement ianaHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
 
-            System.out.println(("First result: " + firstResult.getText()));
+            System.out.println(("Page heading: " + ianaHeading.getText()));
         } finally {
             driver.quit();
         }
