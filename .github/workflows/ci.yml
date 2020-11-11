@@ -70,6 +70,8 @@ jobs:
           wget -c -nc --retry-connrefused --tries=0 https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip -d /home/runner/work/sroc-tcm-acceptance-tests/sroc-tcm-acceptance-tests/drivers
 
-      - name: Run tests
+      # This runs an actual selenium test to confirm we haven't broken anything in the project and it should still be
+      # able to run against our own service.
+      - name: Run example test
         run: |
           java -jar target/sroc-tcm-acceptance-tests.jar example.config.yml
