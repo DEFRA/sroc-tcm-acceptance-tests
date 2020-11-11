@@ -40,10 +40,29 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
+      # With maven already installed it should help build times by not running our local version (./mvnw).
+      # The actual maven command does a bunch of things
+      #
+      # - remove build time files
+      # - compile the code and package as a JAR
+      # - run unit tests
+      # - prepare test coverage information
+      # - install the JAR to the local repository (needed to ensure everything is up to date for SonarCloud)
+      # - run the SonarCloud analysis and send result to SonarCloud
       - name: Build with Maven
         run: |
           mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=DEFRA_sroc-tcm-acceptance-tests
 
+      # Both Chrome and chromedriver are available as part of ubuntu-latest
+      # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md#browsers-and-drivers
+      # Our issue is the project was setup to expect the chromedriver executable to be available in a specific place
+      # (drivers/). So for now we stick with what we did when using Travis for CI, updated based on code found in the
+      # setup-chromedriver action (https://github.com/nanasess/setup-chromedriver)
+      #
+      # - determine the currently installed version of Chrome
+      # - use curl to get the matching chromedriver version
+      # - use wget to download the chromedriver zip file
+      # - extract chromedriver to our drivers/ folder
       - name: Install Chromedriver
         run: |
           CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1)
