@@ -1,0 +1,38 @@
+name: CI
+
+on: push
+
+jobs:
+  build:
+    # You must use a Linux environment when using service containers or container jobs
+    runs-on: ubuntu-latest
+    env:
+      TCM_TEST_PASSWORD: password
+
+    steps:
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of sonarcloud analysis
+
+      # Our projects use .java-version files to specify the Java version to use. We can read and then output it as the
+      # result this step. Subsequent steps can then access the value
+      - name: Read Java version
+        run: echo "##[set-output name=JAVAV;]$(cat .java-version)"
+        # Give the step an ID to make it easier to refer to
+        id: jvm
+
+      # Gets the version to use by referring to the previous step
+      - name: Install Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: "${{ steps.jvm.outputs.JAVAV }}"
+
+      - name: Build with Maven
+        run: |
+          mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=DEFRA_sroc-tcm-acceptance-tests
+
+      - name: Run tests
+        run: |
+          java -jar target/sroc-tcm-acceptance-tests.jar example.config.yml
