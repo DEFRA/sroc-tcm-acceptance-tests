@@ -1,6 +1,6 @@
 # SROC TCM Acceptance tests
 
-[![Build Status](https://travis-ci.com/DEFRA/sroc-tcm-acceptance-tests.svg?branch=main)](https://travis-ci.com/DEFRA/sroc-tcm-acceptance-tests)
+![Build Status](https://github.com/DEFRA/sroc-tcm-acceptance-tests/workflows/CI/badge.svg?branch=main)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_sroc-tcm-acceptance-tests&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DEFRA_sroc-tcm-acceptance-tests)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_sroc-tcm-acceptance-tests&metric=coverage)](https://sonarcloud.io/dashboard?id=DEFRA_sroc-tcm-acceptance-tests)
 [![Known Vulnerabilities](https://snyk.io/test/github/DEFRA/sroc-tcm-acceptance-tests/badge.svg)](https://snyk.io/test/github/DEFRA/sroc-tcm-acceptance-tests)
@@ -9,7 +9,7 @@
 > Temporary project. Do not use as a basis for doing selenium tests with Java!
 
 The Strategic Review of Charging (SROC) Tactical Charging Module (TCM) is an internal tool built by Defra to support the calculation of charges related to various permitting regimes.
- 
+
 This project contains the current acceptance tests for the TCM. It is built around [Selenium Webdriver](https://www.selenium.dev/documentation/en/webdriver/), a tool that allows you to programmatically 'drive' a browser.
 
 ## Prerequisites
@@ -30,7 +30,7 @@ git clone https://github.com/DEFRA/sroc-tcm-acceptance-tests.git
 cd sroc-tcm-acceptance-tests
 ```
 
-Then build the project using [Maven](https://maven.apache.org/). To simplify things the project comes with [maven-wrapper](https://github.com/takari/maven-wrapper). This will automatically install Maven for you if you don't already have it. 
+Then build the project using [Maven](https://maven.apache.org/). To simplify things the project comes with [maven-wrapper](https://github.com/takari/maven-wrapper). This will automatically install Maven for you if you don't already have it.
 
 ```bash
 ./mvnw clean install
@@ -89,7 +89,7 @@ test: main
 Key things are
 
 - `browser:` only use the values `chrome` or `firefox`
-- `headless:` only use the values `true` or `false`. 
+- `headless:` only use the values `true` or `false`.
 - `rootUrl:` should be the base url for an environment, not something like `https://url-of-tcm-dev-environment.gov.uk/auth/sign_in`
 - `test:` should always be `main`. It's configurable only to support the [Confirm setup](#confirm-setup) step of the installation.
 
@@ -121,7 +121,7 @@ The path can be absolute (`/Users/acruikshanks/sroc-tcm-acceptance-tests/dev.chr
 ## Here be dragons!
 
 The current team inherited the 'test' contained in this project. We were handed a single Java file containing 2.6K lines of code. Turns out it's a single `public static void main()` method (😱🤯) which uses Selenium to navigate the TCM.
-  
+
 No testing framework is referenced so there are no assertions. The 'test' was just *can I get through to the end without erroring*. Other highlights were
 
 - hardcoded paths for a specific user's machine
