@@ -29,6 +29,15 @@ jobs:
         with:
           java-version: "${{ steps.jvm.outputs.JAVAV }}"
 
+      # Speeds up workflows by reading the maven packages from cache. Obviously you need to run it at least once, and the
+      # the cache will be updated should the pom.xml file change
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
       - name: Build with Maven
         run: |
           mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=DEFRA_sroc-tcm-acceptance-tests
