@@ -44,6 +44,13 @@ jobs:
         run: |
           mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=DEFRA_sroc-tcm-acceptance-tests
 
+      - name: Install Chromedriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1)
+          VERSION=$(curl --location --fail --retry 10 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
+          wget -c -nc --retry-connrefused --tries=0 https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip -d /home/runner/work/sroc-tcm-acceptance-tests/sroc-tcm-acceptance-tests/drivers
+
       - name: Run tests
         run: |
           java -jar target/sroc-tcm-acceptance-tests.jar example.config.yml
