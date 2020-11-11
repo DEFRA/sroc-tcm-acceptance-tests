@@ -16,6 +16,9 @@
         <maven.compile.target>1.7</maven.compile.target>
         <junit-jupiter-version>5.7.0</junit-jupiter-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.projectKey>DEFRA_sroc-tcm-acceptance-tests</sonar.projectKey>
+        <sonar.organization>defra</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
