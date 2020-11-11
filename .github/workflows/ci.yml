@@ -51,7 +51,7 @@ jobs:
       # - run the SonarCloud analysis and send result to SonarCloud
       - name: Build with Maven
         run: |
-          mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=DEFRA_sroc-tcm-acceptance-tests
+          mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 
       # Both Chrome and chromedriver are available as part of ubuntu-latest
       # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md#browsers-and-drivers
