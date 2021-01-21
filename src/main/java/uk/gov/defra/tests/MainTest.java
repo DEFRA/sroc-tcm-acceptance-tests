@@ -50,7 +50,7 @@ public class MainTest extends BaseTest {
 
             wait = new WebDriverWait(driver, 15);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user_email")));
-            driver.findElement(By.id("user_email")).sendKeys("tacticalcm+1@gmail.com");
+            driver.findElement(By.id("user_email")).sendKeys("admin@sroc.gov.uk");
 
             // Type in password
             driver.findElement(By.id("user_password")).sendKeys(password);
